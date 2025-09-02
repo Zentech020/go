@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/workspace:cached
+    working_dir: /workspace
+    environment:
+      NODE_ENV: development
+      POSTGRES_URL: postgres://dev:dev@postgres:5432/app
+      GO_ENV: development
+      DATABASE_URL: postgres://dev:dev@postgres:5432/app
+    command: tail -f /dev/null
+    depends_on:
+      - postgres
+    ports:
+      - "5173:5173"
+      - "8000:8000"
+
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: app
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:

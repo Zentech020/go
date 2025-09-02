@@ -1,37 +1,116 @@
-# Go (Golang) Codespaces starter template
+# Go + React Full Stack Template
 
-Welcome, Gopher! This repository is a template for you to use in your next (or existing) Go project so you can take advantage of [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/visual-studio-codespaces/), or the brand-new [GitHub Codespaces](https://github.com/features/codespaces).
+A production-ready full-stack template featuring Go backend, React frontend, and PostgreSQL database, optimized for both local development and GitHub Codespaces.
 
-## How to get started on a new repository
+## Features
 
-The easiest way to get started is on a new repository. For that, simply click on the green "Use this template" button, right above the list of files.
+- **Go Backend** (Port 8000): RESTful API with Gorilla Mux, CORS support, and PostgreSQL integration
+- **React Frontend** (Port 5173): Vite-powered React app with hot module replacement
+- **PostgreSQL Database** (Port 5432): Containerized database with persistent storage
+- **GitHub Codespaces Ready**: Automatic environment detection and URL configuration
+- **DevContainer Support**: Full Docker Compose development environment
+- **Hot Reload**: Both frontend (Vite) and backend (Air) support hot reloading
 
-After you do, a list of options for creating a _new_ repository will pop up. After you're done, a brand new repository will be created for you, wherever you told it to. And it'll be pre-populated with everything you need to be up and running with Codespaces.
+## Quick Start
 
-## How to get started with an existing repository
+### Local Development
 
-TODO
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd <your-repo-name>
+   ```
 
-## Testing this out
+2. **Install dependencies**
+   ```bash
+   npm install
+   go mod download
+   ```
 
-This template sets up Go entirely inside a Docker image. To test it, make sure you have [Docker](https://docker.com) installed and run the below command from the root of this repository:
+3. **Start the database**
+   ```bash
+   docker-compose up postgres -d
+   ```
 
-```console
-$ cd .devcontainer
-$ docker build .
-$ cd ..
+4. **Run the full stack**
+   ```bash
+   npm run dev:all
+   ```
+
+   Or run services individually:
+   ```bash
+   # Terminal 1 - Frontend
+   npm run dev
+   
+   # Terminal 2 - Backend
+   npm run api
+   ```
+
+### GitHub Codespaces
+
+1. Click "Code" → "Create codespace on main"
+2. Wait for the environment to build
+3. Run `npm run dev:all` in the terminal
+4. All ports will be automatically forwarded with proper URLs
+
+## Project Structure
+
+```
+.
+├── docker-compose.yml       # Multi-service orchestration
+├── .devcontainer/          # DevContainer configuration
+│   ├── Dockerfile         # Go + Node.js environment
+│   └── devcontainer.json  # VSCode settings
+├── main.go                # Go API server
+├── go.mod                 # Go dependencies
+├── package.json           # Node dependencies & scripts
+├── vite.config.js         # Vite configuration
+├── index.html             # React entry point
+└── src/                   # React source code
+    ├── App.jsx           # Main React component
+    ├── components/       # React components
+    │   └── HealthCheck.jsx
+    └── services/         # API services
+        ├── api.js        # API client
+        └── environment.js # Environment detection
 ```
 
->When you run the command, make sure to remove the leading `$`
+## Available Scripts
 
-## Built on the Shoulders of Giants
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Vite dev server (frontend) |
+| `npm run api` | Start Go API server with hot reload |
+| `npm run dev:all` | Start both frontend and backend |
+| `npm run build` | Build frontend for production |
+| `go build` | Build Go binary |
+| `go test ./...` | Run Go tests |
 
-Like almost every developer who contributes to open source, I didn't write this code in a vacuum. I had help! Thank you to the following contributors for helping me build this:
+## Environment Variables
 
-- [`bnb`](https://github.com/bnb) for code from [codespaces-examples/node](https://github.com/codespaces-examples/node
-)
-- [`asw101`](https://github.com/asw101) for code from [`asw101/hello-vso`](https://github.com/asw101/hello-vso)
+See `.env.example` for available configuration options. The template automatically detects GitHub Codespaces environment and adjusts API URLs accordingly.
 
-I took inspiration, and sometimes code, from their repositories.
+## API Endpoints
 
->I took code and ideas _directly_ from these developers' repositories. There are countless other projects and technologies that this repository implicitly relies on, and the list of contributors behind those projects is too long to write here. Thank you to every one of those contributors.
+- `GET /api/health` - Health check endpoint
+- `GET /api/info` - API information
+- `GET /api/users` - Example users endpoint
+
+## Database Connection
+
+Default PostgreSQL connection:
+```
+Host: localhost (or postgres in Docker)
+Port: 5432
+Database: app
+User: dev
+Password: dev
+```
+
+## Contributing
+
+Feel free to submit issues and pull requests to improve this template.
+
+## License
+
+MIT

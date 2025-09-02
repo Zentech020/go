@@ -1,20 +1,56 @@
 {
-    "name": "Codespaces Go Template Repository",
+    "name": "Go-React-Postgres Full Stack",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "forwardPorts": [5173, 8000, 5432],
+    "portsAttributes": {
+        "5173": { 
+            "label": "Vite Frontend",
+            "onAutoForward": "notify"
+        },
+        "8000": { 
+            "label": "Go API",
+            "onAutoForward": "notify"
+        },
+        "5432": { 
+            "label": "PostgreSQL",
+            "onAutoForward": "silent"
+        }
+    },
     "extensions": [
-        "coenraads.bracket-pair-colorizer-2",
+        "golang.go",
         "eamodio.gitlens",
         "github.vscode-pull-request-github",
         "ms-azuretools.vscode-docker",
         "ms-vsliveshare.vsliveshare",
         "vscode-icons-team.vscode-icons",
         "visualstudioexptteam.vscodeintellicode",
-        "ms-vscode.go"
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
     ],
-    "dockerFile": "Dockerfile",
+    "postCreateCommand": "if [ -f go.mod ]; then go mod download; fi && if [ -f package.json ]; then npm install; fi",
     "settings": {
         "files.exclude": {
             "**/CODE_OF_CONDUCT.md": true,
             "**/LICENSE": true
+        },
+        "go.useLanguageServer": true,
+        "go.lintTool": "golint",
+        "go.lintOnSave": "package",
+        "editor.formatOnSave": true,
+        "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[javascriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
         }
     }
 }

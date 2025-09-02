@@ -1,0 +1,152 @@
+.health-check {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.health-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.health-item.status-connected {
+  border-color: rgba(76, 175, 80, 0.5);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.health-item.status-disconnected {
+  border-color: rgba(244, 67, 54, 0.5);
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.health-item.status-checking {
+  border-color: rgba(255, 193, 7, 0.5);
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.health-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.health-details h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.health-status {
+  margin: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.health-error {
+  padding: 1rem;
+  margin: 1rem 0;
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  border-radius: 4px;
+  color: #ff6b6b;
+}
+
+.health-error p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.health-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.last-checked {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.refresh-button {
+  padding: 0.5rem 1rem;
+  background: rgba(100, 108, 255, 0.1);
+  border: 1px solid rgba(100, 108, 255, 0.3);
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.refresh-button:hover {
+  background: rgba(100, 108, 255, 0.2);
+  border-color: rgba(100, 108, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.refresh-button:active {
+  transform: translateY(0);
+}
+
+@media (prefers-color-scheme: light) {
+  .health-check {
+    background: rgba(0, 0, 0, 0.01);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .health-item {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .health-item.status-connected {
+    border-color: rgba(76, 175, 80, 0.3);
+    background: rgba(76, 175, 80, 0.05);
+  }
+
+  .health-item.status-disconnected {
+    border-color: rgba(244, 67, 54, 0.3);
+    background: rgba(244, 67, 54, 0.05);
+  }
+
+  .health-item.status-checking {
+    border-color: rgba(255, 193, 7, 0.3);
+    background: rgba(255, 193, 7, 0.05);
+  }
+
+  .health-error {
+    background: rgba(244, 67, 54, 0.05);
+    border-color: rgba(244, 67, 54, 0.2);
+    color: #d32f2f;
+  }
+
+  .health-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .refresh-button {
+    background: rgba(100, 108, 255, 0.05);
+    border-color: rgba(100, 108, 255, 0.2);
+  }
+
+  .refresh-button:hover {
+    background: rgba(100, 108, 255, 0.1);
+    border-color: rgba(100, 108, 255, 0.3);
+  }
+}
